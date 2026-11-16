@@ -13,20 +13,10 @@ PROGRAM  logistic_map    ! Begin program
   write(*,*) "Ingrese el valor de xo:"
   read(*,*) xo
   
-  if (xo<= 0.0 .OR. X0>= 1.0 ) then
-  	write(*,*) "xo fuera del rango aceptable ]0.0 : 1.0["
-  	stop
-  end if
-  
-  
   write(*,*) "Ingrese el valor de a:"
   read(*,*) a
   
-  if (a < 0.0 .OR. a > 4.0) then
-      write(*,*) "a fuera de rango [0.0 :4.0]"
-      stop
-  end if
- 
+  call validar_valores(xo,a)
  
   ! xo = 0.5              ! Define xo variable
   ! a = 2.5              ! Define a variable 
@@ -44,5 +34,21 @@ PROGRAM  logistic_map    ! Begin program
   ENDDO                   ! end for 
     
    CLOSE(UNIT=11, STATUS="KEEP") 
+
+! Generamos las subrrutinas del programa-CONTAINS
+
+CONTAINS
+subroutine validar_valores(value_x, value_a)
+REAL, INTENT(IN) :: value_x, value_a ! INTENT(IN) VARIABLES DE SOLO LECTURA
+ if (value_x<= 0.0 .OR. value_x>= 1.0 ) then
+  	write(*,*) "xo fuera del rango aceptable ]0.0 : 1.0["
+  	stop
+ end if
+ 
+ if (value_a < 0.0 .OR. value_a > 4.0) then
+      write(*,*) "a fuera de rango [0.0 :4.0]"
+      stop
+ end if
+end subroutine validar_valores
 
 END PROGRAM logistic_map   ! End Program 
