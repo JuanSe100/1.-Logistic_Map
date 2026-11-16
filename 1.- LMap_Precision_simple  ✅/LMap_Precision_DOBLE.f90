@@ -1,13 +1,13 @@
 PROGRAM  logistic_map    ! Begin program
 
   ! Definicion de variables en el programa
-  REAL :: xo, x, a      ! Variables type Double 
+  REAL(8) :: xo, x, a      ! Variables type Double 
   INTEGER :: n, itmax   ! Variables type Int
   
   
-  write(*,*) "Estamos trabajando con precisión simple"
-  write(*,*) "32 bits (4 bytes) de memoria"
-  write(*,*) "7 decimales"
+  write(*,*) "Estamos trabajando con PRECISION DOBLE"
+  write(*,*) "64 bits (8 bytes) de memoria"
+  write(*,*) "15-17 decimales"
   
   ! Condiciones Iniciales
   write(*,*) "Ingrese el valor de xo:"
@@ -24,12 +24,12 @@ PROGRAM  logistic_map    ! Begin program
   itmax = 10000          ! Define iteration number	
   x = xo
   ! Create a file document 
-  OPEN( UNIT=11, FILE= "datos.dat", STATUS= "REPLACE", ACTION="WRITE")
+  OPEN( UNIT=11, FILE= "datos_Pre_Doble.dat", STATUS= "REPLACE", ACTION="WRITE")
   WRITE(*,*) 'Iteración', '   x'
   WRITE(11,*) 0, xo  ! Write initial values in file_out
   
   DO n=1, itmax, 1        ! Begin for 
-    x = a*x*(1-x)	  ! Logistic map funtion
+    x = a*x*(1.0d0-x)	  ! Logistic map funtion
     WRITE(11,*) n, x	  ! Print iteration result 
   ENDDO                   ! end for 
     
@@ -39,13 +39,13 @@ PROGRAM  logistic_map    ! Begin program
 
 CONTAINS
 subroutine validar_valores(value_x, value_a)
-REAL, INTENT(IN) :: value_x, value_a ! INTENT(IN) VARIABLES DE SOLO LECTURA
- if (value_x<= 0.0 .OR. value_x>= 1.0 ) then
+REAL(8), INTENT(IN) :: value_x, value_a ! INTENT(IN) VARIABLES DE SOLO LECTURA
+ if (value_x<= 0.0d0 .OR. value_x>= 1.0d0 ) then
   	write(*,*) "xo fuera del rango aceptable ]0.0 : 1.0["
   	stop
  end if
  
- if (value_a < 0.0 .OR. value_a > 4.0) then
+ if (value_a < 0.0d0 .OR. value_a > 4.0d0) then
       write(*,*) "a fuera de rango [0.0 :4.0]"
       stop
  end if
