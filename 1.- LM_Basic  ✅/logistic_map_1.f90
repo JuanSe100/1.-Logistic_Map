@@ -9,12 +9,23 @@ PROGRAM  logistic_map    ! Begin program
   write(*,*) "32 bits (4 bytes) de memoria"
   write(*,*) "7 decimales"
   
-  ! Variables iniciales	
+  ! Condiciones Iniciales
   write(*,*) "Ingrese el valor de xo:"
   read(*,*) xo
-   
+  
+  if (xo<= 0.0 .OR. X0>= 1.0 ) then
+  	write(*,*) "xo fuera del rango aceptable ]0.0 : 1.0["
+  	stop
+  end if
+  
+  
   write(*,*) "Ingrese el valor de a:"
   read(*,*) a
+  
+  if (a < 0.0 .OR. a > 4.0) then
+      write(*,*) "a fuera de rango [0.0 :4.0]"
+      stop
+  end if
  
  
   ! xo = 0.5              ! Define xo variable
