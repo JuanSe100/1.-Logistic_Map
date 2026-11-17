@@ -1,5 +1,5 @@
 PROGRAM  logistic_map    ! Begin program
-
+   implicit none ! Nos obliga a declarar todas lasvariables
   ! Definicion de variables en el programa
   REAL :: xo, x, a      ! Variables type Double 
   INTEGER :: n, itmax   ! Variables type Int
