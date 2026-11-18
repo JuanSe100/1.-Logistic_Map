@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scienceplots 
+
+# Definimos variables para los labels
+#=====================================================
+input_name = "data_a_3.3"        #Archivo de entrarada
+titulo = "Lyopunov_a3.3"           #Nombre de la imagen
+
+legend = r'$a=3.3, \: x_0=0.5$'   #Leyenda de la imagen
+#=====================================================
+
+plt.style.use(['science', 'ieee']) # Formato IEEE
+
+x, y = np.loadtxt(f'{input_name}.dat', unpack=True) # LECTURA DE DATOS
+
+# Inicializar la figura
+fig, ax = plt.subplots()
+
+
+#'plot' puntos conectador por lineas 
+#'scatter' puntos sueltos sin conectar 
+ax.plot(x, y, marker='o', linestyle='-', color='blue', linewidth=0.4, markersize=1.2,label=legend)
+
+#Etiquetas
+
+ax.set_xlabel(r'Iteración, $n$')
+ax.set_ylabel(r'Población, $x_n$')
+
+ax.set_xlim(0, 4)
+ax.set_ylim(-8, 1)
+# Opcional: Agregar una leyenda si tienes más de una curva
+ax.legend(loc='best')
+
+fig.savefig(f'{titulo}.pdf')
+
+
+
